@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView , TextInput, TouchableOpacity } from 'react-native';
 
 import firebase from '../../services/firebaseConnection';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../services/firebaseConnection';
 
 export default function Login({ changeStatus }) {
   const [type, setType] = useState('login');
@@ -10,32 +12,39 @@ export default function Login({ changeStatus }) {
   const [password, setPassword] = useState('');
 
 
-  function handleLogin(){
+  function handleLogin() {
    
     if(type === 'login'){
       // Aqui fazemos o login
-      const user = firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        changeStatus(user.user.uid)
-      })
-      .catch((err)=>{
-        console.log(err);
-        alert('Ops parece que deu algum erro.');
-        return;
-      })
+      signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    
+    console.log(user)
+    set(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    console.log(errorMessage);
+  });
 
     }else{
      // Aqui cadastramos o usuario 
-     const user = firebase.auth().createUserWithEmailAndPassword(email, password)
-     .then((user)=>{
-       changeStatus(user.user.uid)
-     })
-     .catch((err)=>{
-      console.log(err);
-      alert('Ops parece que algo está errado!');
-      return;
-     })
-
+     createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    
+    console.log(user)
+    set(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    console.log(errorMessage);
+  });
 
     }
 

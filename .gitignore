@@ -167,7 +167,7 @@ vendor/
 # Firebase Hosting
 .firebaserc
 firebase-debug.log
-.firebaseConnection
+firebaseConnection.js
 
 # Google Services (ex. APIs and Firebase)
 google-services.json
