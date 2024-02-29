@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView , TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView , TextInput, TouchableOpacity, Alert } from 'react-native';
 
 import firebase from '../../services/firebaseConnection';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
@@ -26,6 +26,7 @@ export default function Login({ changeStatus }) {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    alert("Ocorreu um erro")
 
     console.log(errorMessage);
   });
@@ -36,12 +37,12 @@ export default function Login({ changeStatus }) {
   .then((userCredential) => {
     const user = userCredential.user;
     
-    console.log(user)
-    set(user)
+    changeStatus(user)
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    alert("Ocorreu um erro")
     
     console.log(errorMessage);
   });
