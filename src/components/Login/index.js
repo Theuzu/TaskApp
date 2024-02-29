@@ -21,7 +21,7 @@ export default function Login({ changeStatus }) {
     const user = userCredential.user;
     
     console.log(user)
-    set(user)
+    changeStatus(user)
   })
   .catch((error) => {
     const errorCode = error.code;
