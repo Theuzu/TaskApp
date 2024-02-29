@@ -156,3 +156,19 @@ vendor/
 
 # CircleCI
 .circleci/generated_config.yml
+
+# Intellij
+*.iml
+.idea
+
+# Built Android application files
+*.apk
+
+# Firebase Hosting
+.firebaserc
+firebase-debug.log
+.firebaseConnection
+
+# Google Services (ex. APIs and Firebase)
+google-services.json
+GoogleService-Info.plist
