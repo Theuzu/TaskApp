@@ -5,10 +5,10 @@ import {
     StyleSheet
 } from "react-native"
 
-export default function TaskList() {
+export default function TaskList({data}) {
     return (
         <View>
-            <Text>ITEM TAREFAS</Text>
+            <Text>{data.key} {data.nome}</Text>
         </View>
     )
 }

@@ -45,7 +45,7 @@ export default function App() {
         data={listaTask}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
-          <TaskList></TaskList>
+          <TaskList data={item} ></TaskList>
       )} />
 
     </SafeAreaView>
